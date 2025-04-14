@@ -263,6 +263,7 @@ Token handle_operator(Lexer *lexer, char first_char)
     case '(':
     case ')':
     case ';':
+    case ',':
     case '{':
     case '}':
         token.type = TOKEN_DELIM;
@@ -301,7 +302,7 @@ Token handle_operator(Lexer *lexer, char first_char)
         break;
     }
 
-    case '&': 
+    case '&':
     {
         ch = fgetc(lexer->input);
         if (ch == '&')
@@ -310,10 +311,7 @@ Token handle_operator(Lexer *lexer, char first_char)
             token.type = TOKEN_OP;
         }
         else
-        { // 单个 & 按错误处理
-            // ungetc(ch, lexer->input);
-            // token.type = TOKEN_ERROR;
-            // snprintf(token.value, MAX_TOKEN_LEN, "未知运算符: &");
+        { // 单个 &
             ungetc(ch, lexer->input);
             token.value[0] = first_char;
             token.value[1] = '\0';
@@ -501,7 +499,7 @@ int main()
     const char *keywords[] = {"if", "else", "while", "int", "return"};
 
     Lexer lexer;
-    FILE *input = fopen("d:\\20250226candid\\compilers\\test2.txt", "r");
+    FILE *input = fopen("d:\\20250226candid\\compilers\\test3.c", "r");
 
     if (!input)
     {
