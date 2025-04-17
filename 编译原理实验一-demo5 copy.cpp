@@ -187,39 +187,51 @@ Token handle_identifier(Lexer *lexer, char first_char, Token last_token)
     }
 
     // 如果前一个 token 是 int 或 int36，则直接将其识别为标识符
-    if (last_token.type == TOKEN_KEYWORD &&
-        (strcmp(last_token.value, "int") == 0 || strcmp(last_token.value, "int36") == 0))
-    {
-        int sym_index = manage_symbol(lexer->symtab, buffer, 1);
-        if (sym_index == -1)
-        {
-            fprintf(stderr, "[错误] 符号表已满，无法添加 %s\n", buffer);
-            token.type = TOKEN_ERROR;
-            snprintf(token.value, MAX_TOKEN_LEN, "符号表已满");
-            return token;
-        }
-        token.type = TOKEN_IDENT;
-        snprintf(token.value, MAX_TOKEN_LEN, "%d", sym_index);
-        return token;
-    }
+    // if (last_token.type == TOKEN_KEYWORD &&
+    //     (strcmp(last_token.value, "int") == 0 || strcmp(last_token.value, "int36") == 0))
+    // {
+    //     int sym_index = manage_symbol(lexer->symtab, buffer, 1);
+    //     if (sym_index == -1)
+    //     {
+    //         fprintf(stderr, "[错误] 符号表已满，无法添加 %s\n", buffer);
+    //         token.type = TOKEN_ERROR;
+    //         snprintf(token.value, MAX_TOKEN_LEN, "符号表已满");
+    //         return token;
+    //     }
+    //     token.type = TOKEN_IDENT;
+    //     snprintf(token.value, MAX_TOKEN_LEN, "%d", sym_index);
+    //     return token;
+    // }
 
-    // 符号表检查
-    int sym_index = manage_symbol(lexer->symtab, buffer, 0);
-    // printf("%d %d", sym_index, lexer->symtab->count);
-    if (sym_index == lexer->symtab->count && first_char != '_')
+    // // 符号表检查
+    // int sym_index = manage_symbol(lexer->symtab, buffer, 0);
+    // // printf("%d %d", sym_index, lexer->symtab->count);
+    // if (sym_index == lexer->symtab->count && first_char != '_')
+    // {
+    //     // 如果不在符号表中，重新处理为36进制数
+    //     // ungetc(first_char, lexer->input); // 退回第一个字符
+    //     // token = handle_number(lexer, first_char);
+    //     token.type = TOKEN_36NUM;
+    //     snprintf(token.value, MAX_TOKEN_LEN, "%s", buffer);
+    //     return token;
+    // }
+    // else
+    // {
+    //     token.type = TOKEN_IDENT;
+    //     snprintf(token.value, MAX_TOKEN_LEN, "%d", sym_index);
+    // }
+    int sym_index = manage_symbol(lexer->symtab, buffer, 1);
+    if (sym_index == -1)
     {
-        // 如果不在符号表中，重新处理为36进制数
-        // ungetc(first_char, lexer->input); // 退回第一个字符
-        // token = handle_number(lexer, first_char);
-        token.type = TOKEN_36NUM;
-        snprintf(token.value, MAX_TOKEN_LEN, "%s", buffer);
+        fprintf(stderr, "[错误] 符号表已满，无法添加 %s\n", buffer);
+        token.type = TOKEN_ERROR;
+        snprintf(token.value, MAX_TOKEN_LEN, "符号表已满");
         return token;
     }
-    else
-    {
-        token.type = TOKEN_IDENT;
-        snprintf(token.value, MAX_TOKEN_LEN, "%d", sym_index);
-    }
+    token.type = TOKEN_IDENT;
+    snprintf(token.value, MAX_TOKEN_LEN, "%d", sym_index);
+    return token;
+
     return token;
 }
 
