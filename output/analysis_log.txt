@@ -1,0 +1,282 @@
+编号0字符：#
+编号1字符：f
+编号2字符：t
+编号3字符：d
+编号4字符：=
+编号5字符：+
+编号6字符：-
+编号7字符：*
+编号8字符：/
+编号9字符：;
+编号10字符：,
+编号11字符：>
+编号12字符：<
+编号13字符：!
+编号14字符：(
+编号15字符：)
+编号16字符：{
+编号17字符：}
+编号18字符：w
+编号19字符：i
+编号20字符：e
+编号21字符：%
+编号22字符：a
+编号23字符：b
+编号24字符："
+编号25字符："
+编号26字符：&
+编号27字符：[
+编号28字符：]
+编号29字符：.
+编号30字符：@
+编号31字符：K
+编号32字符：G
+编号33字符：P
+编号34字符：H
+编号35字符：B
+编号36字符：L
+编号37字符：S
+编号38字符：Z
+编号39字符：U
+编号40字符：O
+编号41字符：R
+编号42字符：W
+编号43字符：C
+编号44字符：A
+编号45字符：M
+编号46字符：V
+编号47字符：X
+编号48字符：J
+编号49字符：F
+编号50字符：D
+编号51字符：E
+编号52字符：Y
+编号53字符：Q
+编号54字符：N
+编号55字符：T
+编号56字符：I
+
+K->G
+G->@
+G->{H}G
+G->W
+G->F
+G->Y
+G->BP
+P->;G
+P->(R
+P->{H}G
+H->@
+H->BPH
+H->WH
+H->FH
+H->YH
+B->@
+B->SL
+L->@
+L->,B
+L->TTOTO
+S->dZ
+S->%dO
+S->aO
+S->&dO
+S->tU
+S->aTO
+S->aTTOTO
+U->IO
+U->*dO
+Z->O
+Z->(R
+Z->I[I]O
+O->@
+O->++
+O->--
+O->=N
+O->I
+R->"B",B)
+R->B)G
+W->w(C)G
+W->b{H}w(C)G
+C->AM
+A->dJ
+A->aJ
+A->%dJ
+A->{V}
+M->>N
+M-><N
+M->!=I
+M->==I
+V->B
+V->{XB}V
+V->,{XB}
+X->@
+X->"U"X
+X->,X
+J->@
+J->+AJ
+J->-AJ
+J->*AJ
+J->/AJ
+J->%AJ
+J->[I].IJ
+F->f(B;D;E)G
+D->@
+D->C
+E->@
+E->S
+Y->i(C)GQ
+Q->@
+Q->eG
+Q->+
+Q->= 
+I->a
+I->dTT
+I->aT
+T->@
+T->[
+T->]
+T->.d
+T->%
+FIRST(f) = {f}
+FIRST(t) = {t}
+FIRST(d) = {d}
+FIRST(=) = {=}
+FIRST(+) = {+}
+FIRST(-) = {-}
+FIRST(*) = {*}
+FIRST(/) = {/}
+FIRST(;) = {;}
+FIRST(,) = {,}
+FIRST(>) = {>}
+FIRST(<) = {<}
+FIRST(!) = {!}
+FIRST(() = {(}
+FIRST()) = {)}
+FIRST({) = {{}
+FIRST(}) = {}}
+FIRST(w) = {w}
+FIRST(i) = {i}
+FIRST(e) = {e}
+FIRST(%) = {%}
+FIRST(a) = {a}
+FIRST(b) = {b}
+FIRST(") = {"}
+FIRST(") = {"}
+FIRST(&) = {&}
+FIRST([) = {[}
+FIRST(]) = {]}
+FIRST(.) = {.}
+FIRST(@) = {@}
+FIRST(K) = {f, t, d, {, w, i, %, a, b, &, @}
+FIRST(G) = {f, t, d, ;, (, {, w, i, %, a, b, &, @}
+FIRST(P) = {;, (, {}
+FIRST(H) = {f, t, d, ;, (, {, w, i, %, a, b, &, @}
+FIRST(B) = {t, d, %, a, &, @}
+FIRST(L) = {d, =, +, -, ,, %, a, [, ], ., @, @}
+FIRST(S) = {t, d, %, a, &}
+FIRST(Z) = {d, =, +, -, (, a, @}
+FIRST(U) = {d, *, a}
+FIRST(O) = {d, =, +, -, a, @}
+FIRST(R) = {t, d, ), %, a, ", &}
+FIRST(W) = {w, b}
+FIRST(C) = {d, {, %, a}
+FIRST(A) = {d, {, %, a}
+FIRST(M) = {=, >, <, !}
+FIRST(V) = {t, d, ,, {, %, a, &, @}
+FIRST(X) = {,, ", @}
+FIRST(J) = {+, -, *, /, %, [, @}
+FIRST(F) = {f}
+FIRST(D) = {d, {, %, a, @}
+FIRST(E) = {t, d, %, a, &, @}
+FIRST(Y) = {i}
+FIRST(Q) = {=, +, e, @}
+FIRST(N) = {}
+FIRST(T) = {%, [, ], ., @}
+FIRST(I) = {d, a}
+FOLLOW(K) = {#}
+FOLLOW(G) = {#}
+FOLLOW(P) = {#}
+FOLLOW(H) = {#, f, t, d, {, w, i, %, a, b, &}
+FOLLOW(B) = {#, f, t, d, ,, {, w, i, %, a, b, &}
+FOLLOW(L) = {#, f, t, d, {, w, i, %, a, b, &}
+FOLLOW(S) = {#, f, t, d, {, w, i, %, a, b, &}
+FOLLOW(Z) = {}
+FOLLOW(U) = {,, }, "}
+FOLLOW(O) = {#, f, t, d, =, +, -, {, w, i, %, a, b, &}
+FOLLOW(R) = {#}
+FOLLOW(W) = {#}
+FOLLOW(C) = {#, f, t, d, {, w, i, %, a, b, &}
+FOLLOW(A) = {}
+FOLLOW(M) = {#, f, t, d, {, w, i, %, a, b, &}
+FOLLOW(V) = {}
+FOLLOW(X) = {}}
+FOLLOW(J) = {}
+FOLLOW(F) = {#}
+FOLLOW(D) = {#, f, t, d, {, w, i, %, a, b, &}
+FOLLOW(E) = {#, f, t, d, {, w, i, %, a, b, &}
+FOLLOW(Y) = {#}
+FOLLOW(Q) = {#}
+FOLLOW(N) = {#, f, t, d, =, +, -, {, w, i, %, a, b, &}
+FOLLOW(T) = {#, f, t, d, =, +, -, {, w, i, %, a, b, &, [, ], .}
+FOLLOW(I) = {#, f, t, d, =, +, -, {, w, i, %, a, b, &, .}
+FOLLOW(K) = {#}
+FOLLOW(G) = {#, f, t, d, {, w, i, %, a, b, &}
+FOLLOW(P) = {#}
+FOLLOW(H) = {#, f, t, d, {, w, i, %, a, b, &}
+FOLLOW(B) = {#, f, t, d, ,, {, w, i, %, a, b, &}
+FOLLOW(L) = {#, f, t, d, ,, {, w, i, %, a, b, &}
+FOLLOW(S) = {#, f, t, d, {, w, i, %, a, b, &}
+FOLLOW(Z) = {#, f, t, d, {, w, i, %, a, b, &}
+FOLLOW(U) = {#, f, t, d, ,, {, }, w, i, %, a, b, ", &}
+FOLLOW(O) = {#, f, t, d, =, +, -, ,, {, }, w, i, %, a, b, ", &}
+FOLLOW(R) = {#, f, t, d, {, w, i, %, a, b, &}
+FOLLOW(W) = {#}
+FOLLOW(C) = {#, f, t, d, {, w, i, %, a, b, &}
+FOLLOW(A) = {}
+FOLLOW(M) = {#, f, t, d, {, w, i, %, a, b, &}
+FOLLOW(V) = {}
+FOLLOW(X) = {}}
+FOLLOW(J) = {}
+FOLLOW(F) = {#}
+FOLLOW(D) = {#, f, t, d, {, w, i, %, a, b, &}
+FOLLOW(E) = {#, f, t, d, {, w, i, %, a, b, &}
+FOLLOW(Y) = {#}
+FOLLOW(Q) = {#}
+FOLLOW(N) = {#, f, t, d, =, +, -, ,, {, }, w, i, %, a, b, ", &}
+FOLLOW(T) = {#, f, t, d, =, +, -, ,, {, }, w, i, %, a, b, ", &, [, ], .}
+FOLLOW(I) = {#, f, t, d, =, +, -, ,, {, }, w, i, %, a, b, ", &, .}
+分析表:
+	|#	|f	|t	|d	|=	|+	|-	|*	|/	|;	|,	|>	|<	|!	|(	|)	|{	|}	|w	|i	|e	|%	|a	|b	|"	|"	|&	|[	|]	|.	|
+K	|KG	|KG	|KG	|KG	|	|	|	|	|	|KG	|	|	|	|	|KG	|	|KG	|	|KG	|KG	|	|KG	|KG	|KG	|	|	|KG	|	|	|	|
+G	|G@	|GF	|GBP	|GBP	|	|	|	|	|	|GBP	|	|	|	|	|GBP	|	|GBP	|	|GW	|GY	|	|GBP	|GBP	|GW	|	|	|GBP	|	|	|	|
+P	|	|	|	|	|	|	|	|	|	|P;G	|	|	|	|	|P(R	|	|P{H}G	|	|	|	|	|	|	|	|	|	|	|	|	|	|
+H	|H@	|HFH	|HBPH	|HBPH	|	|	|	|	|	|HBPH	|	|	|	|	|HBPH	|	|HBPH	|	|HWH	|HYH	|	|HBPH	|HBPH	|HWH	|	|	|HBPH	|	|	|	|
+B	|B@	|B@	|BSL	|BSL	|	|	|	|	|	|	|B@	|	|	|	|	|	|B@	|	|B@	|B@	|	|BSL	|BSL	|B@	|	|	|BSL	|	|	|	|
+L	|LTTOTO	|LTTOTO	|LTTOTO	|LTTOTO	|LTTOTO	|LTTOTO	|LTTOTO	|	|	|	|LTTOTO	|	|	|	|	|	|LTTOTO	|	|LTTOTO	|LTTOTO	|	|LTTOTO	|LTTOTO	|LTTOTO	|	|	|LTTOTO	|LTTOTO	|LTTOTO	|LTTOTO	|
+S	|	|	|StU	|SdZ	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|S%dO	|SaTTOTO	|	|	|	|S&dO	|	|	|	|
+Z	|ZO	|ZO	|ZO	|ZI[I]O	|ZO	|ZO	|ZO	|	|	|	|	|	|	|	|Z(R	|	|ZO	|	|ZO	|ZO	|	|ZO	|ZI[I]O	|ZO	|	|	|ZO	|	|	|	|
+U	|	|	|	|UIO	|	|	|	|U*dO	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|UIO	|	|	|	|	|	|	|	|
+O	|O@	|O@	|O@	|OI	|O=N	|O++	|O--	|	|	|	|O@	|	|	|	|	|	|O@	|O@	|O@	|O@	|	|O@	|OI	|O@	|	|O@	|O@	|	|	|	|
+R	|	|	|RB)G	|RB)G	|	|	|	|	|	|	|	|	|	|	|	|RB)G	|	|	|	|	|	|RB)G	|RB)G	|	|	|R"B",B)	|RB)G	|	|	|	|
+W	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|Ww(C)G	|	|	|	|	|Wb{H}w(C)G	|	|	|	|	|	|	|
+C	|	|	|	|CAM	|	|	|	|	|	|	|	|	|	|	|	|	|CAM	|	|	|	|	|CAM	|CAM	|	|	|	|	|	|	|	|
+A	|	|	|	|AdJ	|	|	|	|	|	|	|	|	|	|	|	|	|A{V}	|	|	|	|	|A%dJ	|AaJ	|	|	|	|	|	|	|	|
+M	|	|	|	|	|M==I	|	|	|	|	|	|	|M>N	|M<N	|M!=I	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|
+V	|	|	|VB	|VB	|	|	|	|	|	|	|V,{XB}	|	|	|	|	|	|V{XB}V	|	|	|	|	|VB	|VB	|	|	|	|VB	|	|	|	|
+X	|	|	|	|	|	|	|	|	|	|	|X,X	|	|	|	|	|	|	|X@	|	|	|	|	|	|	|	|X"U"X	|	|	|	|	|
+J	|	|	|	|	|	|J+AJ	|J-AJ	|J*AJ	|J/AJ	|	|	|	|	|	|	|	|	|	|	|	|	|J%AJ	|	|	|	|	|	|J[I].IJ	|	|	|
+F	|	|Ff(B;D;E)G	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|
+D	|D@	|D@	|D@	|DC	|	|	|	|	|	|	|	|	|	|	|	|	|DC	|	|D@	|D@	|	|DC	|DC	|D@	|	|	|D@	|	|	|	|
+E	|E@	|E@	|ES	|ES	|	|	|	|	|	|	|	|	|	|	|	|	|E@	|	|E@	|E@	|	|ES	|ES	|E@	|	|	|ES	|	|	|	|
+Y	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|Yi(C)GQ	|	|	|	|	|	|	|	|	|	|	|
+Q	|Q@	|	|	|	|Q= 	|Q+	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|QeG	|	|	|	|	|	|	|	|	|	|
+N	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|
+T	|T@	|T@	|T@	|T@	|T@	|T@	|T@	|	|	|	|T@	|	|	|	|	|	|T@	|T@	|T@	|T@	|	|T%	|T@	|T@	|	|T@	|T@	|T[	|T]	|T.d	|
+I	|	|	|	|IdTT	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|	|IaT	|	|	|	|	|	|	|	|
+
+struct student { char * name ; int num ; int age ; float score ; } ; void main ( ) { int i , flag , num_140 = 0 ; float sum = 0 ; student sts [ 2 ] = { { " , 5 , 18 , 145.0 } , { " , 6 , 18 , 150.0 } } ; if ( sts [ 1 ] . score < 140 ) flag = - 1 ; else flag = 1 ; printf ( " , flag ) ; #
+分析栈	余留符号串	产生式	下一步动作消息
+#K	struct student { char * name ; int num ; int age ; float score ; } ; void main ( ) { int i , flag , num_140 = 0 ; float sum = 0 ; student sts [ 2 ] = { { " , 5 , 18 , 145.0 } , { " , 6 , 18 , 150.0 } } ; if ( sts [ 1 ] . score < 140 ) flag = - 1 ; else flag = 1 ; printf ( " , flag ) ; ##		K->G	弹出K, G进栈
+#G	struct student { char * name ; int num ; int age ; float score ; } ; void main ( ) { int i , flag , num_140 = 0 ; float sum = 0 ; student sts [ 2 ] = { { " , 5 , 18 , 145.0 } , { " , 6 , 18 , 150.0 } } ; if ( sts [ 1 ] . score < 140 ) flag = - 1 ; else flag = 1 ; printf ( " , flag ) ; ##		G->@	弹出G, @进栈
+#	struct student { char * name ; int num ; int age ; float score ; } ; void main ( ) { int i , flag , num_140 = 0 ; float sum = 0 ; student sts [ 2 ] = { { " , 5 , 18 , 145.0 } , { " , 6 , 18 , 150.0 } } ; if ( sts [ 1 ] . score < 140 ) flag = - 1 ; else flag = 1 ; printf ( " , flag ) ; ##			文法分析完毕, 但仍有赘余元素, 分析失败！
+接收的语义串分析失败!!

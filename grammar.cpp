@@ -5,7 +5,7 @@
 #include <algorithm>
 #include "CiFaAnalysis.cpp"
 #include <windows.h>
-
+#include <fstream>
 
 using namespace std;
 
@@ -171,7 +171,7 @@ void input()
     for (int i = 0; i < rule.size(); i++)
     {
 
-        cout << rule[i] << endl;
+        cout << rule[i][0] << "->" << rule[i].substr(1) << endl;
     }
 }
 
@@ -591,6 +591,9 @@ bool analyseProcess()
 
 int main()
 {
+    ofstream logFile("analysis_log.txt");
+    cout.rdbuf(logFile.rdbuf()); // 重定向cout
+
     SetConsoleOutputCP(CP_UTF8); // 设置控制台输出为UTF-8
 
     input();
