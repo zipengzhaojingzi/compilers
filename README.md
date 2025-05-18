@@ -5,11 +5,13 @@ gcc grammar
 
 ## cmd
 
-`g++ grammar.cpp -o "output\grammar"`
+```cpp
+g++ grammar.cpp -o "output\grammar"
 
-`cd output`
+cd output
 
-`grammar`
+grammar
+```
 
 ## bash
 
