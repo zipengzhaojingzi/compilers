@@ -7,18 +7,18 @@ struct student
     float score;
 };
 
-void main() // 修正main函数返回类型
+void main()
 {
     int i, flag, num_140 = 0;
     float sum = 0;
-    student sts[2] = {                           // 修正数组初始化语法
-                      {"Li ping", 5, 18, 145.0}, // 修正中文引号为英文
+    student sts[2] = {                           
+                      {"Li ping", 5, 18, 145.0}, 
                       {"Wang ming", 6, 18, 150.0}};
 
-    if (sts[1].score < 140) // 修正14o为140
+    if (sts[1].score < 140) 
         flag = -1;
     else
-        flag = 1; // 修正字母l为数字1
+        flag = 1;
 
     printf("%d ", flag);
 }

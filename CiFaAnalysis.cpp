@@ -116,7 +116,7 @@ int SearchRecvWord(string s)
         return resvWordMap[s];
 }
 
-int Scanner(string inputStr, string& token, int& pos, ofstream& out_fp, int& identifier_syn)
+int Scanner(string inputStr, string& token, int& pos, int& identifier_syn)
 {
     int flag;
     char tmp = inputStr[pos];
@@ -283,8 +283,8 @@ int Scanner(string inputStr, string& token, int& pos, ofstream& out_fp, int& ide
 
         //输出界符 flag = 2(未实现)
         token = inputStr[pos];
-        cout << "界符" << '(' << 2 << ',' << token << ')' << endl;
-        out_fp << "界符" << '(' << 2 << ',' << token << ')' << endl;
+        // cout << "界符" << '(' << 2 << ',' << token << ')' << endl;
+        // out_fp << "界符" << '(' << 2 << ',' << token << ')' << endl;
         token = "";
         pos++;
         while (1) {
@@ -295,8 +295,8 @@ int Scanner(string inputStr, string& token, int& pos, ofstream& out_fp, int& ide
             token += inputStr[pos];
             pos++;
         }
-        cout << "常量" << '(' << 5 << ',' << token << ')' << endl;
-        out_fp << "常量" << '(' << 5 << ',' << token << ')' << endl;
+        // cout << "常量" << '(' << 5 << ',' << token << ')' << endl;
+        // out_fp << "常量" << '(' << 5 << ',' << token << ')' << endl;
         token = inputStr[pos];
         flag = 2;
         pos++;
@@ -305,13 +305,13 @@ int Scanner(string inputStr, string& token, int& pos, ofstream& out_fp, int& ide
     /*单独识别单引号，用于判断字串是否属于char类型的数据*/
     else if (inputStr[pos] == '\'') {
         token = inputStr[pos];
-        cout << "界符" << '(' << 2 << ',' << token << ')' << endl;
-        out_fp << "界符" << '(' << 2 << ',' << token << ')' << endl;
+        // cout << "界符" << '(' << 2 << ',' << token << ')' << endl;
+        // out_fp << "界符" << '(' << 2 << ',' << token << ')' << endl;
         pos++;
 
         token = inputStr[pos];
-        cout << "常量" << '(' << 5 << ',' << token << ')' << endl;
-        out_fp << "常量" << '(' << 5 << ',' << token << ')' << endl;
+        // cout << "常量" << '(' << 5 << ',' << token << ')' << endl;
+        // out_fp << "常量" << '(' << 5 << ',' << token << ')' << endl;
         pos++;
 
         if (inputStr[pos] != '\'') {   //遇到第二个引号
@@ -449,92 +449,128 @@ int Scanner(string inputStr, string& token, int& pos, ofstream& out_fp, int& ide
     return flag;
 }
 
-std::string AnalyzeCiFaStr()
-{
-  // 打开文件
+// 修改后的Scanner调用逻辑
+std::string AnalyzeCiFaStr() {
     ifstream in_fp("test.txt");
-    ofstream out_fp("res.txt");
-    std::string result; // 新增结果收集变量
+    if (!in_fp.is_open()) return "read_file_error";
 
-    if (!in_fp.is_open()) {
-        return "read_file_error";
-    }
-    if (!out_fp.is_open()) {
-        return "write_file_error";
-    }
-
-    for (int i = 0; i < 31; i++) {
-        resvWordMap[resvWords_dir[i]] = i + 1;  //为31个保留字赋值1-32
-    }
-
-    string inputStr, token; //读入源代码    当前字串
-    char tmp;   //当前字符
-    while (!in_fp.eof()) {
-        tmp = in_fp.get();
-        inputStr += tmp;
-    }
+    // 直接读取整个文件内容
+    string inputStr((istreambuf_iterator<char>(in_fp)), 
+                   istreambuf_iterator<char>());
     in_fp.close();
 
-    //去除注释以及转义字符
-    inputStr = FilterCode(inputStr);
+    inputStr = FilterCode(inputStr); // 处理注释
+    
+    // 初始化保留字映射
+    for (int i = 0; i < 31; i++) {
+        resvWordMap[resvWords_dir[i]] = i + 1;
+    }
 
-    int flag = -1;
-    int pos = 0;    //扫描器扫描位置pos
+    stringstream result;
+    int pos = 0, flag = -1, identifier_syn = 0;
+    string token;
 
-    // 字符串为标识符：1，当遇到int36关键字时，将syn设置为1，当对标识符加入int36标识符数组后，重置为0
-    int identifier_syn = 0;
-
-    while (flag != 0) {
-        flag = Scanner(inputStr, token, pos, out_fp, identifier_syn);
-        //标识符
-        if (flag == 1) {
-            cout << "标识符" << '(' << 1 << ',' << token << ')' << endl;
-            out_fp << "标识符" << '(' << 1 << ',' << token << ')' << endl;
-        }
-        //界符
-        else if (flag == 2) {
-            cout << "界符" << '(' << 2 << ',' << token << ')' << endl;
-            out_fp << "界符" << '(' << 2 << ',' << token << ')' << endl;
-        }
-        //运算符
-        else if (flag == 3) {
-            cout << "运算符" << '(' << 3 << ',' << token << ')' << endl;
-            out_fp << "运算符" << '(' << 3 << ',' << token << ')' << endl;
-        }
-        //保留字
-        else if (flag == 4) {
-            cout << "保留字" << '(' << 4 << ',' << token << ')' << endl;
-            out_fp << "保留字" << '(' << 4 << ',' << token << ')' << endl;
-
-        }
-        //常量
-        else if (flag == 5) {
-            cout << "常量" << '(' << 5 << ',' << token << ')' << endl;
-            out_fp << "常量" << '(' << 5 << ',' << token << ')' << endl;
-        }
-        else if (flag == 6) {
-            cout << "INT36" << '(' << 6 << ',' << token << ')' << endl;
-            out_fp << "INT36" << '(' << 6 << ',' << token << ')' << endl;
-        }
-        else if (flag == 0) {
-            cout << "complete" << endl;
-        }
-        else {    //报错
-            cout << "error" << endl;
-            exit(1);
+    // 核心扫描循环
+    while ((flag = Scanner(inputStr, token, pos, identifier_syn)) != 0) {
+        if (flag == -1) continue; // 跳过非法字符
+        
+        // 仅输出符号本身
+        if (!token.empty()) {
+            result << token << " ";
+            token.clear();
         }
     }
-out_fp.flush();  // 强制刷新缓冲区
-out_fp.close();   // 先关闭输出流
 
-ifstream in("res.txt");  // 重新打开读取
-stringstream buffer;
-buffer << in.rdbuf();
-result = buffer.str();
-in.close();
-
-    return result; // 返回实际分析结果
+    result << "#"; // 添加结束符
+    return result.str();
 }
+
+// std::string AnalyzeCiFaStr()
+// {
+//   // 打开文件
+//     ifstream in_fp("test.txt");
+//     ofstream out_fp("res.txt");
+//     std::string result; // 新增结果收集变量
+
+//     if (!in_fp.is_open()) {
+//         return "read_file_error";
+//     }
+//     if (!out_fp.is_open()) {
+//         return "write_file_error";
+//     }
+
+//     for (int i = 0; i < 31; i++) {
+//         resvWordMap[resvWords_dir[i]] = i + 1;  //为31个保留字赋值1-32
+//     }
+
+//     string inputStr, token; //读入源代码    当前字串
+//     char tmp;   //当前字符
+//     while (!in_fp.eof()) {
+//         tmp = in_fp.get();
+//         inputStr += tmp;
+//     }
+//     in_fp.close();
+
+//     //去除注释以及转义字符
+//     inputStr = FilterCode(inputStr);
+
+//     int flag = -1;
+//     int pos = 0;    //扫描器扫描位置pos
+
+//     // 字符串为标识符：1，当遇到int36关键字时，将syn设置为1，当对标识符加入int36标识符数组后，重置为0
+//     int identifier_syn = 0;
+
+//     while (flag != 0) {
+//         flag = Scanner(inputStr, token, pos, out_fp, identifier_syn);
+//         //标识符
+//         if (flag == 1) {
+//             cout << "标识符" << '(' << 1 << ',' << token << ')' << endl;
+//             out_fp << "标识符" << '(' << 1 << ',' << token << ')' << endl;
+//         }
+//         //界符
+//         else if (flag == 2) {
+//             cout << "界符" << '(' << 2 << ',' << token << ')' << endl;
+//             out_fp << "界符" << '(' << 2 << ',' << token << ')' << endl;
+//         }
+//         //运算符
+//         else if (flag == 3) {
+//             cout << "运算符" << '(' << 3 << ',' << token << ')' << endl;
+//             out_fp << "运算符" << '(' << 3 << ',' << token << ')' << endl;
+//         }
+//         //保留字
+//         else if (flag == 4) {
+//             cout << "保留字" << '(' << 4 << ',' << token << ')' << endl;
+//             out_fp << "保留字" << '(' << 4 << ',' << token << ')' << endl;
+
+//         }
+//         //常量
+//         else if (flag == 5) {
+//             cout << "常量" << '(' << 5 << ',' << token << ')' << endl;
+//             out_fp << "常量" << '(' << 5 << ',' << token << ')' << endl;
+//         }
+//         else if (flag == 6) {
+//             cout << "INT36" << '(' << 6 << ',' << token << ')' << endl;
+//             out_fp << "INT36" << '(' << 6 << ',' << token << ')' << endl;
+//         }
+//         else if (flag == 0) {
+//             cout << "complete" << endl;
+//         }
+//         else {    //报错
+//             cout << "error" << endl;
+//             exit(1);
+//         }
+//     }
+// out_fp.flush();  // 强制刷新缓冲区
+// out_fp.close();   // 先关闭输出流
+
+// ifstream in("res.txt");  // 重新打开读取
+// stringstream buffer;
+// buffer << in.rdbuf();
+// result = buffer.str();
+// in.close();
+
+//     return result; // 返回实际分析结果
+// }
 
 // int main() {
 //     string res = AnalyzeCiFaStr();
