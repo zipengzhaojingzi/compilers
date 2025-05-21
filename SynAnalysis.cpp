@@ -418,7 +418,7 @@ void initGrammer()
     printf("\n************************************文法终结符******************************\n\n");
     for (int i = 0; i < terMap.size(); i++)
     {
-        // printf("%s %d\n", terMap[i].first, terMap[i].second);
+        printf("%s %d\n", terMap[i].first, terMap[i].second);
     }
     printf("\n");
     printf("\n************************************文法非终结符******************************\n\n");
@@ -1000,11 +1000,12 @@ void Select()
     printf("\n************************************Select集******************************\n\n");
     for (int i = 0; i < procNum; i++)
     {
-         printf("产生式 %d: %s -> ", i+1, searchMapping(proc[i+1][1]));
-        for(int k=3; proc[i+1][k] != -1; k++) {
-            printf("%s ", searchMapping(proc[i+1][k]));
+        printf("产生式 %d: %s -> ", i + 1, searchMapping(proc[i + 1][1]));
+        for (int k = 3; proc[i + 1][k] != -1; k++)
+        {
+            printf("%s ", searchMapping(proc[i + 1][k]));
         }
-    
+
         printf("Select[%d] = ", i + 1);
         for (int j = 0;; j++)
         {
@@ -1169,11 +1170,15 @@ void Analysis()
             reserve[i++] = DESCRIBE;
             // Push(&s2,DESCRIBE);
         }
-        else if (p->type == INT_VAL)
+        else if (p->type == INT_VAL || p->type == FLOAT_VAL)
         {
             reserve[i++] = DIGIT;
             // Push(&s2,DIGIT);
         }
+        // else if (p->type == FLOAT_VAL)
+        // {
+        //     reserve[i++] = FLOAT;
+        // }
         else if (p->type == CHAR || p->type == DOUBLE || p->type == FLOAT || p->type == INT ||
                  p->type == LONG || p->type == SHORT || p->type == VOID)
         {
@@ -1198,7 +1203,7 @@ void Analysis()
             reserve[i++] = p->type;
             // Push(&s2,p->type);
         }
-        //   printf("符号: %s, 类型: %d\n", p->content, p->type);
+        // printf("符号: %s, 类型: %d\n", p->content, p->type);
 
         p = p->next;
     }
@@ -1210,14 +1215,13 @@ void Analysis()
             break;
         }
     }
-        //   printf("栈的长度 %d\n", s1Length);
-    
+    //   printf("栈的长度 %d\n", s1Length);
+
     // 反向入栈
     for (i = s1Length; i > 0; i--)
     {
         Push(&s2, reserve[i - 1]);
-     printf("元素 %d\n",reserve[i-1]);
-
+        // printf("元素 %d\n", reserve[i - 1]);
     }
 
     for (i = 0;; i++) /*分析*/

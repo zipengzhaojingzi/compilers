@@ -147,6 +147,7 @@
 #define TYPE 4001  
 #define STRING 4002  
 #define DIGIT 4003  
+// #define FLOAT 4004
   
 struct NormalNode  
 {  
