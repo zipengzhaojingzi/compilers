@@ -418,7 +418,7 @@ void initGrammer()
     printf("\n************************************文法终结符******************************\n\n");
     for (int i = 0; i < terMap.size(); i++)
     {
-        printf("%s %d", terMap[i].first, terMap[i].second);
+        // printf("%s %d\n", terMap[i].first, terMap[i].second);
     }
     printf("\n");
     printf("\n************************************文法非终结符******************************\n\n");
@@ -1000,6 +1000,11 @@ void Select()
     printf("\n************************************Select集******************************\n\n");
     for (int i = 0; i < procNum; i++)
     {
+         printf("产生式 %d: %s -> ", i+1, searchMapping(proc[i+1][1]));
+        for(int k=3; proc[i+1][k] != -1; k++) {
+            printf("%s ", searchMapping(proc[i+1][k]));
+        }
+    
         printf("Select[%d] = ", i + 1);
         for (int j = 0;; j++)
         {
@@ -1193,7 +1198,7 @@ void Analysis()
             reserve[i++] = p->type;
             // Push(&s2,p->type);
         }
-          printf("符号: %s, 类型: %d\n", p->content, p->type);
+        //   printf("符号: %s, 类型: %d\n", p->content, p->type);
 
         p = p->next;
     }
