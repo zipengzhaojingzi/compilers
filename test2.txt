@@ -1,8 +1,24 @@
+struct student
+{
+    char *name;
+    int num;
+    int age;
+    float score;
+};
 
-int main(){
-    int a, b;
-    a=1;
-    b=2;
-    a=a+b;
-   return 0;
+void main()
+{
+    int i, flag, num_140 = 0;
+    float sum = 0;
+    student sts[2] = {                           
+                      {"Li ping", 5, 18, 145}, 
+                      {"Wang ming", 6, 18, 150}
+                      };
+
+    if (sts[1].score < 140) 
+        flag = -1;
+    else
+        flag = 1;
+
+    printf("%d ", flag);
 }

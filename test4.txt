@@ -1,9 +1,0 @@
-void main(){
-    int a=19, sum=0;
-    int36 b=5Au, c=0z(5ff);
-    for(int i=0;i<100;i++){
-        if(i<=50)sum=sum+a5u+b;
-    else sum=sum+0z(60)+c;
-}
-    printf(%d2,sum);
-}

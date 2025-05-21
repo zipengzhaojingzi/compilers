@@ -1,0 +1,10 @@
+struct student {
+    char *name;
+    int num;
+} sts[2] = {
+    {"Li ping", 5},
+    {"Wang ming", 6}
+};
+
+if (sts[1].num < 140) 
+    flag = -1;

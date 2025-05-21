@@ -1,0 +1,4 @@
+int,float,char,void,struct,if,else,while,for,return
+=,+,*,/,%,==,!=,<,>,<=,>=,&&,||,!,&,|,^,=,.,->
+(,),{,},[,],;,.,,,#, 
+identifier,integer,floatnum,string,char_literal

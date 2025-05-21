@@ -1,0 +1,359 @@
+编号0字符：#
+编号1字符：b
+编号2字符：e
+编号3字符：p
+编号4字符：q
+编号5字符：l
+编号6字符：m
+编号7字符：d
+编号8字符：r
+编号9字符：n
+编号10字符：s
+编号11字符：a
+编号12字符：o
+编号13字符：t
+编号14字符：f
+编号15字符：g
+编号16字符：h
+编号17字符：i
+编号18字符：c
+编号19字符：k
+编号20字符：y
+编号21字符：x
+编号22字符：w
+编号23字符：v
+编号24字符：j
+编号25字符：u
+编号26字符：c
+编号27字符：z
+编号28字符：K
+编号29字符：G
+编号30字符：P
+编号31字符：B
+编号32字符：H
+编号33字符：L
+编号34字符：S
+编号35字符：Z
+编号36字符：U
+编号37字符：O
+编号38字符：R
+编号39字符：W
+编号40字符：C
+编号41字符：A
+编号42字符：M
+编号43字符：V
+编号44字符：X
+编号45字符：J
+编号46字符：F
+编号47字符：D
+编号48字符：E
+编号49字符：Y
+编号50字符：Q
+编号51字符：N
+编号52字符：T
+编号53字符：I
+
+K->G
+G->z
+G->bHGeG
+G->W
+G->F
+G->Y
+G->BP
+P->mG
+P->pR
+P->bHGeG
+H->z
+H->BPH
+H->WH
+H->FH
+H->YH
+B->z
+B->SL
+L->z
+L->cB
+L->TTTT
+S->dZ
+S->gdO
+S->kO
+S->ndO
+S->sU
+S->kTO
+S->kTTTO
+U->IO
+U->sdO
+Z->O
+Z->pR
+Z->lIrO
+O->z
+O->x
+O->y
+O->aN
+O->I
+R->kBcBq
+R->BqG
+W->wCpG
+W->ubHewCpqG
+C->AM
+A->dJ
+A->kJ
+A->gdJ
+A->bVe
+M->hN
+M->iN
+M->nI
+M->cI
+V->B
+V->bXBeV
+V->cbXBe
+X->z
+X->kUcX
+X->cX
+J->z
+J->oAJ
+J->tAJ
+J->sAJ
+J->fAJ
+J->gAJ
+J->lIdJ
+F->opBmDmEqG
+D->z
+D->C
+E->z
+E->S
+Y->fCpGQ
+Q->z
+Q->eG
+Q->o
+Q->a
+I->k
+I->dTT
+I->kT
+T->z
+T->l
+T->r
+T->dd
+T->g
+N->k
+N->d
+N->aI
+N->A
+FIRST(b) = {}
+FIRST(e) = {}
+FIRST(p) = {}
+FIRST(q) = {}
+FIRST(l) = {}
+FIRST(m) = {}
+FIRST(d) = {}
+FIRST(r) = {}
+FIRST(n) = {}
+FIRST(s) = {}
+FIRST(a) = {}
+FIRST(o) = {}
+FIRST(t) = {}
+FIRST(f) = {}
+FIRST(g) = {}
+FIRST(h) = {}
+FIRST(i) = {}
+FIRST(c) = {}
+FIRST(k) = {}
+FIRST(y) = {}
+FIRST(x) = {}
+FIRST(w) = {}
+FIRST(v) = {}
+FIRST(j) = {}
+FIRST(u) = {}
+FIRST(c) = {}
+FIRST(z) = {}
+FIRST(K) = {}
+FIRST(G) = {}
+FIRST(P) = {}
+FIRST(B) = {}
+FIRST(H) = {}
+FIRST(L) = {}
+FIRST(S) = {}
+FIRST(Z) = {}
+FIRST(U) = {}
+FIRST(O) = {}
+FIRST(R) = {}
+FIRST(W) = {}
+FIRST(C) = {}
+FIRST(A) = {}
+FIRST(M) = {}
+FIRST(V) = {}
+FIRST(X) = {}
+FIRST(J) = {}
+FIRST(F) = {}
+FIRST(D) = {}
+FIRST(E) = {}
+FIRST(Y) = {}
+FIRST(Q) = {}
+FIRST(N) = {}
+FIRST(T) = {}
+FIRST(I) = {}
+FOLLOW(b) = {#}
+FOLLOW(e) = {#}
+FOLLOW(p) = {#}
+FOLLOW(q) = {#}
+FOLLOW(l) = {#}
+FOLLOW(m) = {#}
+FOLLOW(d) = {#}
+FOLLOW(r) = {#}
+FOLLOW(n) = {#}
+FOLLOW(s) = {#}
+FOLLOW(a) = {#}
+FOLLOW(o) = {#}
+FOLLOW(t) = {}
+FOLLOW(f) = {#}
+FOLLOW(g) = {#}
+FOLLOW(h) = {#}
+FOLLOW(i) = {#}
+FOLLOW(c) = {}
+FOLLOW(k) = {#}
+FOLLOW(y) = {}
+FOLLOW(x) = {}
+FOLLOW(w) = {#}
+FOLLOW(v) = {}
+FOLLOW(j) = {}
+FOLLOW(u) = {#}
+FOLLOW(c) = {#}
+FOLLOW(z) = {#}
+FOLLOW(K) = {#}
+FOLLOW(G) = {#}
+FOLLOW(P) = {#}
+FOLLOW(B) = {#}
+FOLLOW(H) = {#}
+FOLLOW(L) = {#}
+FOLLOW(S) = {#}
+FOLLOW(Z) = {}
+FOLLOW(U) = {#}
+FOLLOW(O) = {}
+FOLLOW(R) = {#}
+FOLLOW(W) = {#}
+FOLLOW(C) = {#}
+FOLLOW(A) = {#}
+FOLLOW(M) = {#}
+FOLLOW(V) = {#}
+FOLLOW(X) = {#}
+FOLLOW(J) = {}
+FOLLOW(F) = {#}
+FOLLOW(D) = {#}
+FOLLOW(E) = {#}
+FOLLOW(Y) = {#}
+FOLLOW(Q) = {#}
+FOLLOW(N) = {#}
+FOLLOW(T) = {#}
+FOLLOW(I) = {#}
+FOLLOW(b) = {#}
+FOLLOW(e) = {#}
+FOLLOW(p) = {#}
+FOLLOW(q) = {#}
+FOLLOW(l) = {#}
+FOLLOW(m) = {#}
+FOLLOW(d) = {#}
+FOLLOW(r) = {#}
+FOLLOW(n) = {#}
+FOLLOW(s) = {#}
+FOLLOW(a) = {#}
+FOLLOW(o) = {#}
+FOLLOW(t) = {#}
+FOLLOW(f) = {#}
+FOLLOW(g) = {#}
+FOLLOW(h) = {#}
+FOLLOW(i) = {#}
+FOLLOW(c) = {}
+FOLLOW(k) = {#}
+FOLLOW(y) = {#}
+FOLLOW(x) = {#}
+FOLLOW(w) = {#}
+FOLLOW(v) = {}
+FOLLOW(j) = {}
+FOLLOW(u) = {#}
+FOLLOW(c) = {#}
+FOLLOW(z) = {#}
+FOLLOW(K) = {#}
+FOLLOW(G) = {#}
+FOLLOW(P) = {#}
+FOLLOW(B) = {#}
+FOLLOW(H) = {#}
+FOLLOW(L) = {#}
+FOLLOW(S) = {#}
+FOLLOW(Z) = {#}
+FOLLOW(U) = {#}
+FOLLOW(O) = {#}
+FOLLOW(R) = {#}
+FOLLOW(W) = {#}
+FOLLOW(C) = {#}
+FOLLOW(A) = {#}
+FOLLOW(M) = {#}
+FOLLOW(V) = {#}
+FOLLOW(X) = {#}
+FOLLOW(J) = {#}
+FOLLOW(F) = {#}
+FOLLOW(D) = {#}
+FOLLOW(E) = {#}
+FOLLOW(Y) = {#}
+FOLLOW(Q) = {#}
+FOLLOW(N) = {#}
+FOLLOW(T) = {#}
+FOLLOW(I) = {#}
+分析表:
+	|
+b	|
+e	|
+p	|
+q	|
+l	|
+m	|
+d	|
+r	|
+n	|
+s	|
+a	|
+o	|
+t	|
+f	|
+g	|
+h	|
+i	|
+c	|
+k	|
+y	|
+x	|
+w	|
+v	|
+j	|
+u	|
+c	|
+z	|
+K	|
+G	|
+P	|
+B	|
+H	|
+L	|
+S	|
+Z	|
+U	|
+O	|
+R	|
+W	|
+C	|
+A	|
+M	|
+V	|
+X	|
+J	|
+F	|
+D	|
+E	|
+Y	|
+Q	|
+N	|
+T	|
+I	|
+
+struct student { char * name ; int num ; int age ; float score ; } ; void main ( ) { int i , flag , num_140 = 0 ; float sum = 0 ; student sts [ 2 ] = { { " , 5 , 18 , 145.0 } , { " , 6 , 18 , 150.0 } } ; if ( sts [ 1 ] . score < 140 ) flag = - 1 ; else flag = 1 ; printf ( " , flag ) ; #
+分析栈	余留符号串	产生式	下一步动作消息
+#K	struct student { char * name ; int num ; int age ; float score ; } ; void main ( ) { int i , flag , num_140 = 0 ; float sum = 0 ; student sts [ 2 ] = { { " , 5 , 18 , 145.0 } , { " , 6 , 18 , 150.0 } } ; if ( sts [ 1 ] . score < 140 ) flag = - 1 ; else flag = 1 ; printf ( " , flag ) ; ##			!!!语法分析错误, 不存在相应产生式
+接收的语义串分析失败!!

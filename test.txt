@@ -1,24 +1,20 @@
-
-struct student
-{
-    char *name;
-    int num;
-    int age;
-    float score;
-};
-
-void main()
-{
-    int i, flag, num_140 = 0;
-    float sum = 0;
-    student sts[2] = {                           
-                      {"Li ping", 5, 18, 145.0}, 
-                      {"Wang ming", 6, 18, 150.0}};
-
-    if (sts[1].score < 140) 
-        flag = -1;
-    else
-        flag = 1;
-
-    printf("%d ", flag);
-}
+int main()  
+{  
+    int i = 7;  
+    int j = 9;  
+    int c[20] =   
+  
+{2,10,10,19,3,4,5,5,34,6,54,52,34,55,68,10,90,78,56,20};  
+    for (i=0;i<20;i++)  
+    {  
+        for(j=i+1;j<20;j--)  
+        {  
+            if(j == 19)  
+            {  
+                c[i] = j;  
+            }  
+        }  
+    }  
+    printf("Hello world");  
+    return 0;  
+}  
