@@ -9,9 +9,7 @@ gcc grammar
 g++ main.cpp LexAnalysis.cpp SynAnalysis.cpp -o grammar
 
 grammar
+.\grammar(bash)
+
+test2.txt
 ```
-
-## bash
-
-`./grammar`
-
