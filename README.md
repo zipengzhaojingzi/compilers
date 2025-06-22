@@ -6,14 +6,10 @@ gcc grammar
 ## cmd
 
 ```cpp
-g++ main.cpp LexAnalysis.cpp SynAnalysis.cpp -o grammar
+
 
 grammar
+.\grammar(bash)
+
+test2.txt
 ```
-
-## bash
-
-`./grammar`
-
-
-the files that need to be read are in the output

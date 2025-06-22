@@ -1,3 +1,5 @@
+#include "LL1Parser.hpp"
+
 #ifndef _SYNANALYSIS_H  
 #define _SYNANALYSIS_H  
   
@@ -22,5 +24,5 @@ void First();
 void Follow();  
 void Select();  
 void MTable();  
-void Analysis();  
+void Analysis( SemanticTreeNode*& root);  
 #endif  

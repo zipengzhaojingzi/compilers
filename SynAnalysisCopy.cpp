@@ -6,6 +6,7 @@
 #include <fstream>
 #include <vector>
 #include <conio.h>
+#include <queue>
 #include "LexAnalysis.h"
 #include "SynAnalysis.h"
 
@@ -1144,15 +1145,18 @@ void ShowStack2(SeqStack *S) /*显示栈的字符，先输出栈顶元素*/
 void Analysis(SemanticTreeNode *&root)
 {
     // 分析结果输出
-    std::vector<SemanticTreeNode *> nodeStack;   // 解析树结点栈
     std::vector<SemanticTreeNode *> parentStack; // 仅存放非终结符节点
 
     SemanticTreeNode *currentParent = nullptr;
     Symbol rootSymbol(SymbolType::NonTerminal, "<程序>");
-    SemanticTreeNode *root = new SemanticTreeNode(rootSymbol);
-    nodes.push_back(root);
-    currentParent = root;
-    parentStack.push_back(currentParent);
+    SemanticTreeNode *root1 = new SemanticTreeNode(rootSymbol, root);
+    // nodes.push_back(root);
+    root = root1;
+    currentParent = root1;
+
+    // parentStack.push_back(currentParent);
+
+    queue<std::string> q_realValue; // 存放q_realValue
 
     resultfile.open("preciateResult.txt", ios::out);
 
@@ -1182,6 +1186,7 @@ void Analysis(SemanticTreeNode *&root)
         else if (p->type == INT_VAL || p->type == FLOAT_VAL)
         {
             reserve[i++] = DIGIT;
+            q_realValue.push(p->content);
             // Push(&s2,DIGIT);
         }
         // else if (p->type == FLOAT_VAL)
@@ -1191,28 +1196,43 @@ void Analysis(SemanticTreeNode *&root)
         else if (p->type == CHAR || p->type == DOUBLE || p->type == FLOAT || p->type == INT ||
                  p->type == LONG || p->type == SHORT || p->type == VOID)
         {
+            q_realValue.push(p->content);
+
             reserve[i++] = TYPE;
             // Push(&s2,TYPE);
         }
         else if (p->type == STRING_VAL)
         {
+            q_realValue.push(p->content);
+
             reserve[i++] = STRING;
             // Push(&s2,STRING);
         }
         // 新增：处理 struct 关键字
         else if (p->type == STRUCT)
         {
+
             reserve[i++] = STRUCT;
         }
         else if (p->type == DOU_QUE || p->type == SIN_QUE)
         {
+        }
+        else if (p->type == IDENTIFER)
+        {
+            reserve[i++] = p->type;
+            q_realValue.push(p->content);
+            // if (strcmp(p->content, "main") == 0)
+            // {
+            //     q_realValue.pop();
+            //     q_realValue.pop();
+            // }
         }
         else
         {
             reserve[i++] = p->type;
             // Push(&s2,p->type);
         }
-        // printf("符号: %s, 类型: %d\n", p->content, p->type);
+        printf("符号: %s, 类型: %d\n", p->content, p->type);
 
         p = p->next;
     }
@@ -1233,6 +1253,7 @@ void Analysis(SemanticTreeNode *&root)
         // printf("元素 %d\n", reserve[i - 1]);
     }
 
+    int voidmain = 0;
     for (i = 0;; i++) /*分析*/
     {
         // getch();
@@ -1254,6 +1275,7 @@ void Analysis(SemanticTreeNode *&root)
 
         GetTop(&s1, &c1); /*取栈顶元素，记为c1，c2*/
         GetTop(&s2, &c2);
+
         if (c1 == GRAMMAR_SPECIAL && c2 == GRAMMAR_SPECIAL) /*当符号栈和输入栈都剩余#时，分析成功*/
         {
             // printf("成功!\n");
@@ -1270,22 +1292,13 @@ void Analysis(SemanticTreeNode *&root)
         {
             Pop(&s1);
             Pop(&s2);
-            
-            // // 创建 Symbol 对象
-            // std::string lit = searchMapping(c1);
-            // // std::cout << lit << std::endl;
-            // // 创建一个新的叶子节点并压入节点栈
-            // Symbol symbol(SymbolType::Terminal, lit); // 构造 Symbol
-            // SemanticTreeNode *newNode = new SemanticTreeNode(symbol);
-            // nodeStack.push_back(newNode);
-            std::string token = searchMapping(c1);
-            SemanticTreeNode *leaf = new SemanticTreeNode(
-                Symbol(SymbolType::Terminal, token), currentParent);
-            if (currentParent)
-            {
-                currentParent->children.push_back(leaf);
-            }
-            // nodeStack.push(leaf);
+            // std::string token = searchMapping(c1);
+            // SemanticTreeNode *leaf = new SemanticTreeNode(
+            //     Symbol(SymbolType::Terminal, token), currentParent);
+            // if (currentParent)
+            // {
+            //     currentParent->children.push_back(leaf);
+            // }
             flag = 1;
         }
 
@@ -1315,73 +1328,74 @@ void Analysis(SemanticTreeNode *&root)
             }
             else
             {
-                // std::string lit1 = searchMapping(M[h1][h2][0]);
-                // // std::cout << lit << std::endl;
-                // // 创建一个新的叶子节点并压入节点栈
-                // Symbol symbol(SymbolType::Terminal, lit1); // 构造 Symbol
-                // SemanticTreeNode *newNode = new SemanticTreeNode(symbol);
-                // nodeStack.push_back(newNode);
                 int length = 0;
+                // parentStack.pop();
+                vector<SemanticTreeNode *> children;
                 // 记录下推导式的长度
                 for (length = 0;; length++)
                 {
-                    std::cerr << "[DEBUG] M= " << M[h1][h2][length] << " ";
+                    // std::cerr << "[DEBUG] M= " << M[h1][h2][length] << " ";
+
                     if (M[h1][h2][length] == -1)
                     {
 
                         break;
                     }
                 }
-                std::cerr << std::endl;
 
-                // 收集子节点并调整顺序
-                vector<SemanticTreeNode *> children;
-                children.reserve(length);
-                std::cerr << "[DEBUG] nodeStack 状态（处理前）: ";
-                for (auto node : nodeStack)
+                for (int i = length - 1; i > 1; i--)
                 {
-                    std::cerr << node->literal << " ";
-                }
-                std::cerr << std::endl;
-                for (int k = length; k > 2; --k)
-                {
-                    if (!nodeStack.empty())
+                    if (M[h1][h2][i] == 2002)
                     {
-                        // children.push_back(nodeStack.back());
-                        // 获取栈顶节点（最右边的子节点）
-                        children.insert(children.begin(), nodeStack.back()); // 正向插入
-                        nodeStack.pop_back();
+                        continue;
+                    }
+                    if (M[h1][h2][i] > 2010 && M[h1][h2][i] < 4000)
+                    {
+                        std::string token = searchMapping(M[h1][h2][i]);
+                        Symbol Nonterminal(SymbolType::NonTerminal, token);
+                        SemanticTreeNode *leaf = new SemanticTreeNode(Nonterminal, currentParent);
+                        children.push_back(leaf);
+                        parentStack.push_back(leaf);
+                    }
+                    else
+                    {
+                        voidmain++;
+                        std::string token = searchMapping(M[h1][h2][i]);
+                        std::string realValue = token;
+                        if ((M[h1][h2][i] > 4000  ||M[h1][h2][i]==40) )
+                        {
+                            realValue = q_realValue.front();
+                            
+                            q_realValue.pop();
+                        }
+                        
+                        std::cerr << "终结符" <<token<<" "<< realValue <<" " <<M[h1][h2][i] << std::endl;
+                        Symbol terminal(SymbolType::Terminal, token, realValue);
+                        SemanticTreeNode *leaf = new SemanticTreeNode(terminal, currentParent);
+                        children.push_back(leaf);
                     }
                 }
-                std::cerr << "[DEBUG] nodeStack 状态（处理后）: ";
-                for (auto node : nodeStack)
-                {
-                    std::cerr << node->literal << " ";
-                }
-                std::cerr << std::endl;
                 reverse(children.begin(), children.end()); // 调整顺序
-                std::string lit = searchMapping(c1);
-                // // 调试输出
-                // std::cerr << "[DEBUG] 非终结符 " << lit << " 的子节点数：" << children.size() << std::endl;
-                // for (auto child : children)
+                currentParent->children = std::move(children);
+                // std::string token0 = searchMapping(c1);
+                // Symbol Nonterminal0(SymbolType::NonTerminal, token0);
+                // SemanticTreeNode *leaf0 = new SemanticTreeNode(Nonterminal0, currentParent);
+                // currentParent->children.push_back(leaf0);
+                // std::cerr << "子节点顺序: ";
+                // for (auto &child : currentParent->children)
                 // {
-                //     std::cerr << "  子节点类型: " << (child->type == SymbolType::NonTerminal ? "非终结符" : "终结符")
-                //               << "，符号: " << child->literal << std::endl;
+                //     std::cerr << child->literal << " ";
                 // }
-                // 构造非终结符 Symbol
-                std::cout << lit << std::endl;
-
-                Symbol nonTerminalSymbol(SymbolType::NonTerminal, lit); // 明确类型为非终结符
-                SemanticTreeNode *nonTerminalNode = new SemanticTreeNode(nonTerminalSymbol);
-                nonTerminalNode->children = std::move(children);
-                nodeStack.push_back(nonTerminalNode);
-                std::cerr << "子节点顺序: ";
-                for (auto &child : nonTerminalNode->children)
+                // std::cerr << std::endl;
+                if (!parentStack.empty())
                 {
-                    std::cerr << child->literal << " ";
+                    currentParent = parentStack.back(); // 先取栈顶
+                    parentStack.pop_back();             // 再弹出
                 }
-                std::cerr << std::endl;
-
+                else
+                {
+                    currentParent = root; // 默认回到根节点
+                }
                 Pop(&s1);
                 // 如果不是空的话，反向入栈
                 if (M[h1][h2][2] != GRAMMAR_NULL)
@@ -1400,6 +1414,7 @@ void Analysis(SemanticTreeNode *&root)
         }
         else
         {
+
             resultfile << "所用推出式：";
             // printf("所用推出式：");
             int w = 0;
@@ -1419,29 +1434,4 @@ void Analysis(SemanticTreeNode *&root)
         }
     }
     resultfile.close();
-    // 设置语法树根节点
-
-    if (!nodeStack.empty())
-    {
-        // root = nodeStack.back(); // root 是输出参数
-        if (!nodeStack.empty())
-        {
-            // 确保栈底为根节点
-            root = nodeStack.front();
-        }
-        else
-        {
-            root = new SemanticTreeNode(Symbol(SymbolType::NonTerminal, "<空程序>"));
-        }
-    }
-    else
-    {
-        root = nullptr; // 错误处理
-    }
-    // if (root)
-    // {
-    //     std::cout << "=== 语法树结构 ===" << std::endl;
-    //     SemanticTreeNode::printTree(root); // 打印语法树
-    //     std::cout << "=================" << std::endl;
-    // }
 }
